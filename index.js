@@ -105,16 +105,6 @@ function getPageURL(pageID) {
   return staticText + pageID + '.htm';
 }
 
-
-// 1. Get a list of all the states
-// 
-getStates().then(function(states){
-  
-  // Get data for all the states
-  getDataForAllStates();
-
-});
-
 async function getDataForAllStates() {
   
   let dataset = [];
@@ -173,3 +163,53 @@ function addPageIDToList(pageID) {
   }
 }
 
+async function getAllParties() {
+
+  const url = 'http://results.eci.gov.in/pc/en/partywise/allparty.htm',
+  html = await rp(url),
+  controlClass = '.table-party',
+  $ = cheerio.load(html),
+  rowsSelector = 'tr:nth-child(n+3)',
+  aRows = [],
+  cols = ['Party', 'Won', 'Leading', 'Total'];
+
+  $(controlClass).find(rowsSelector).each(function(i, elem) {
+
+    let obj = {};
+
+    $(this).find('> td').each(function(j, cell){
+
+      let nestedCell,
+      td = $(this);
+
+      obj[cols[j]] = td.text();
+
+    });
+    
+    aRows.push(obj);
+
+  });
+
+  const csvData = new otcsv(aRows);
+
+  // Write data to disk
+  // 
+  return csvData.toDisk('./data/eci-allparties-data.csv');
+
+
+}
+
+
+//--------------------------------
+// 1. Get a list of all the states
+// 
+getStates().then(function(states){
+  
+  // Get data for all the states
+  getDataForAllStates();
+
+});
+
+// 2. Get a list of all parties
+// 
+getAllParties();
