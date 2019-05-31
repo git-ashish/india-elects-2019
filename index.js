@@ -79,6 +79,9 @@ async function getPCData(pageID) {
 
     let obj = {};
 
+    // push State Code
+    obj['State'] = pageID.slice(0, 3);
+
     $(this).find('> td').each(function(j, cell){
 
       let nestedCell,
