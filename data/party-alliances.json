@@ -1,0 +1,6 @@
+{
+	"NDA": ["BJP", "SS", "JD(U)", "LJP", "SAD", "AD", "AIADMK", "AJSU", "NDPP", "NPP", "MNF", "RLP", "SDF", "PMK", "AINRC"],
+	"UPA": ["INC", "DMK", "NCP", "NC", "JMM", "JD(S)", "RLSP", "VIP", "JVM(P)", "RJD", "HAM"],
+	"OTHERS": ["TMC", "YSRCP", "OTHERS", "BJD", "TRS", "IND", "TDP", "AIMIM", "AIUDF", "AAP", "NPF", "CPI(M)", "SUCI", "UDP", "JJP", "JSP", "NPP", "PDP", "PRISM", "CPI", "INLD", "GGP", "AIFB", "AGP"],
+	"Mahagathbandhan": ["BSP", "SP", "RLD"]
+}
